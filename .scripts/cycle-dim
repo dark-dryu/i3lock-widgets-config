@@ -1,0 +1,24 @@
+#!/bin/bash
+
+while true;
+do
+	inactiu=$(xprintidle)
+	if [ $inactiu -gt 15000 ]
+	then
+		$HOME/.scripts/eww close-all && xset dpms force off
+	fi
+	if [ $inactiu -lt 10000 ]
+	then
+		$HOME/.scripts/eww open-many player-spotify weather calendari
+	fi
+	sleep 5
+done
+#while true;
+#do
+#inactiu=$(xprintidle)
+#	if [ $inactiu -lt 2000 ]
+#	then
+#		$HOME/.scripts/eww open-many player-spotify weather calendari &
+#	fi
+#	sleep 1
+#done

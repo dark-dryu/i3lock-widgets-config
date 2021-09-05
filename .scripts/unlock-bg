@@ -1,0 +1,30 @@
+#!/bin/bash
+
+function setbg {
+  cp $1 /home/andreu/Pictures/Fondos/wall.jpg
+#  notify-send "wallpaper changed" -i /home/andreu/Pictures/Fondos/wall.jpg
+  feh --bg-fill /home/andreu/Pictures/Fondos/wall.jpg
+}
+
+main () {
+location="SPXX0430"
+tmpfile=/home/andreu/.scripts/tmp/$location.out
+
+SUNR=$(grep SunriseSunset "$tmpfile" | grep -oE '((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))' | head -1)
+SUNS=$(grep SunriseSunset "$tmpfile" | grep -oE '((1[0-2]|0?[1-9]):([0-5][0-9]) ?([AaPp][Mm]))' | tail -1)
+
+sunrise=$(date --date="$SUNR" +%H%M)
+noon=$(date --date="$SUNR +2 hours" +%H%M)
+sunset=$(date --date="$SUNS" +%H%M)
+nit=$(date --date="$SUNS +2 hours" +%H%M) 
+
+hour=$(date +%H%M)
+[ $hour -lt $sunrise ] 				&& setbg /home/andreu/Pictures/Fondos/bigsur/wall_04.jpg # night
+[ $hour -ge $sunrise ] && [ $hour -lt $noon ]   && setbg /home/andreu/Pictures/Fondos/bigsur/wall_01.jpg # morning
+[ $hour -ge $noon ]    && [ $hour -lt $sunset ] && setbg /home/andreu/Pictures/Fondos/bigsur/wall_02.jpg # midday
+[ $hour -ge $sunset ]  && [ $hour -lt $nit ]    && setbg /home/andreu/Pictures/Fondos/bigsur/wall_03.jpg # dusk
+[ $hour -ge $nit ]     				&& setbg /home/andreu/Pictures/Fondos/bigsur/wall_04.jpg # night
+}
+
+main
+

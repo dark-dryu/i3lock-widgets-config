@@ -1,0 +1,46 @@
+#!/bin/sh
+
+fg_color=fefefe00
+wrong_color=f82a11aa
+highlight_color=393939ff
+verif_color=0FCC20ff
+date_hour_color=000000ff
+
+slowfade () {
+    dis=$(echo -n "$DISPLAY" | tr -c '[:alnum:]' _)
+    ifc='com.github.chjj.compton'
+    obj='/com/github/chjj/compton'
+    if [[ "$1" == "start" ]]; then
+        dbus-send --print-reply --dest=$ifc.$dis \
+            $obj $ifc.opts_set string:fade_in_step double:0.02
+        dbus-send --print-reply --dest=$ifc.$dis \
+            $obj $ifc.opts_set string:fade_out_step double:0.02
+    else
+        dbus-send --print-reply --dest=$ifc.$dis \
+            $obj $ifc.opts_set string:fade_in_step double:0.1
+        dbus-send --print-reply --dest=$ifc.$dis \
+            $obj $ifc.opts_set string:fade_out_step double:0.1
+    fi
+}
+
+#playerctl -a pause
+$HOME/.scripts/cycle-dim &
+pkill -u "$USER" -USR1 dunst
+$HOME/.scripts/wait-suspend &
+sleep 1 && $HOME/.scripts/eww open-many player-spotify weather calendari &
+slowfade start
+i3lock -n --force-clock -i ~/Pictures/Fondos/fons-lock.png \
+--ind-pos="w/2:h/2+158" --time-pos="w/2:h/4-5" --date-pos="w/2:h/4+55" --greeter-pos="w/2:h/2" \
+--insidever-color=5f5f5f66 --insidewrong-color=$wrong_color --inside-color=5f5f5f00 \
+--ringver-color=$verif_color --ringwrong-color=$wrong_color --ring-color=$fg_color \
+--keyhl-color=$highlight_color --bshl-color=$highlight_color --separator-color=00000000 \
+--date-color=$date_hour_color --time-color=$date_hour_color --greeter-color=$fg_color  \
+--time-str="%H:%M" --time-size=120 \
+--date-str="%a, %d %b" --date-size=35 \
+--greeter-text="$date_now" --greeter-size=25 \
+--line-uses-inside --radius 115 --ring-width 4 --indicator \
+--verif-text=""  --wrong-text="" --noinput-text="" \
+--clock --date-font="Arillo" --time-font="Arillo" \
+--pass-media-keys
+slowfade end
+

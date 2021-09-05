@@ -1,0 +1,130 @@
+<eww>
+  <definitions>
+    <def name="blur_full">
+      <box orientation="v" space-evenly="true">
+      </box>
+    </def>
+    <def name="prog-bar">
+      <box orientation="h" class="prog-bar" space-evenly="true" halign="center">
+	<scale min="0" max="10" value="{{cur_work}}" onchange=" "/>
+      </box>
+    </def>
+    <def name="prog-title">
+      <box orientation="h" class="prog-title" space-evenly="true" halign="center">
+	Restoring Workspaces ...
+      </box>
+    </def>
+    <def name="spotify-info">
+      <box orientation="h" class="prog-title" space-evenly="true" halign="center">
+	Restoring Workspaces ...
+      </box>
+    </def>
+	<!-- weather -->
+	<def name="weather">
+		<box class="weather_win">
+			<box orientation="v" spacing="0" space-evenly="false" vexpand="false" hexpand="false">
+				<box orientation="h" spacing="0" space-evenly="true" vexpand="false" hexpand="false">
+					<label class="label_temp" halign="start" text="{{TEMP}}"/>
+					<label class="iconweather" style="color: {{HEX}};" text="{{ICON}}"/>
+				</box>
+				<box orientation="h" spacing="0" vexpand="false" hexpand="false">
+					<label class="label_stat" halign="start" text="{{STAT}}"/>
+				</box>
+			</box>
+		</box>
+	</def>
+	<!-- spotify player -->
+        <def name="player">
+          <box orientation="h" space-evenly="false">
+            <box class="musicart" style="background-image: url('{{cover}}');">{{art}}</box>
+	    <box orientation="v" space-evenly="false"> 
+	    	<box halign="start" class="musictitle">{{music2}}</box>
+		<box halign="start" class="musicartist">{{music3}}</box>
+		<box halign="start" class="musicalbum">{{music4}}</box>
+		<!--     	<box halign="start" orientation="h" class="volume" space-evenly="false">
+			<scale min="0" max="101" value="{{volume}}" onchange="amixer -D pulse sset Master {}%"/>
+	  	</box> -->
+	    </box>          
+          </box>
+        </def>	
+	<def name="calendari">
+	   <box orientation="v" space-evenly="false" valign="end">
+		<box class="cal-name" halign="start"> Personal</box>
+		<box class="events" orientation="h" space-evenly="true" halign="start">
+			<box class="cal-day">{{cal-per-dia-w}}</box>
+			<box class="cal-tit">{{cal-per-tit-w}}</box>
+		</box>
+		<box class="cal-name" halign="start"> Treball</box>
+		<box class="events" orientation="h" space-evenly="true" halign="start">
+			<box class="cal-day">{{cal-tre-dia-w}}</box>
+			<box class="cal-tit">{{cal-tre-tit-w}}</box>
+		</box>
+	   </box>	
+	</def>
+  </definitions>
+
+  <variables>
+    <script-var name="cur_work" interval="10ms">~/.config/eww/scripts/getworkspace</script-var>
+    <!--Weather vars-->
+    <script-var name="ICON" interval="15m">~/.config/eww/scripts/weather_info --icon</script-var>
+    <script-var name="STAT" interval="15m">~/.config/eww/scripts/weather_info --stat</script-var>
+    <script-var name="TEMP" interval="15m">~/.config/eww/scripts/weather_info --temp</script-var>
+    <script-var name="HEX" interval="15m">~/.config/eww/scripts/weather_info --hex</script-var>
+    <!-- Music vars -->
+    <script-var name="music" interval="5s">[ $(ps h -C spotify | wc -l) != 0 ] && playerctl metadata --format '{{ artist }} - {{ title }}'</script-var>
+    <script-var name="music2" interval="5s">[ $(ps h -C spotify | wc -l) != 0 ] && playerctl metadata --format ' {{ title }}'</script-var>
+    <script-var name="music3" interval="5s">[ $(ps h -C spotify | wc -l) != 0 ] && playerctl metadata --format ' {{ artist }}'</script-var>
+    <script-var name="music4" interval="5s">[ $(ps h -C spotify | wc -l) != 0 ] && playerctl metadata --format ' {{ album }}'</script-var>
+    <script-var name="art" interval="5s">~/.config/eww/scripts/getart</script-var>
+    <script-var name="volume" interval="3ms">~/.config/eww/scripts/getvol</script-var>
+    <script-var name="bright" interval="1ms">~/.config/eww/scripts/getbri</script-var>
+    <script-var name="musicstat" interval="1s">~/bin/spotifystatus</script-var>
+    <script-var name="cover" interval="5s">[ $(ps h -C spotify | wc -l) != 0 ] && ~/.config/eww/scripts/echoart</script-var>
+    <!-- Cal var -->
+    <script-var name="cal-per-dia-w" interval="1s">~/.config/eww/scripts/cal-per-dia</script-var>
+    <script-var name="cal-per-tit-w" interval="1s">~/.config/eww/scripts/cal-per-tit</script-var>
+    <script-var name="cal-tre-dia-w" interval="1s">~/.config/eww/scripts/cal-tre-dia</script-var>
+    <script-var name="cal-tre-tit-w" interval="1s">~/.config/eww/scripts/cal-tre-tit</script-var>
+  </variables>
+ 
+  <windows>
+    <window name="blur_full">
+      <geometry x="0px" y="0px" width="100%" height="100%"/>
+      <widget>
+        <blur_full/>
+      </widget>
+    </window>
+    <window name="progress">
+	<geometry x="35%" y="60%" width="30%" height="10%"/>
+	<widget>
+	   <prog-bar/>
+	</widget>
+    </window>
+    <window name="prog-title">
+	<geometry x="35%" y="35%" width="30%" height="10%"/>
+	<widget>
+	   <prog-title/>
+	</widget>
+    </window>
+    <!-- weather -->
+    <window name="weather" stacking="fg" focusable="false" screen="1">
+    	<geometry x="60px" y="20px" width="300" height="100"/>
+    	<widget>
+    		<weather/>
+    	</widget>
+    </window>
+    <window name="player-spotify">
+      <geometry x="40px" y="-40px" width="600px" height="150px" anchor="left bottom"/>
+      <widget>
+        <player/>
+      </widget>
+    </window>
+    <window name="calendari">
+      <geometry x="-40px" y="-40px" width="400px" height="150px" anchor="right bottom"/>
+      <widget>
+        <calendari/>
+      </widget>
+    </window>
+  </windows>
+	
+</eww>

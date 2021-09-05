@@ -1,0 +1,153 @@
+*{
+  all: unset;
+}
+window {
+  background-color: unset;
+  color: #ffd5cd;
+}
+
+
+
+.prog-bar scale trough highlight {
+  all: unset;
+  background-color: #FFB300;
+  color: #000000;
+  border-radius: 20px;
+}
+.prog-bar scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  min-height: 40px;
+  min-width: 500px;
+  border-radius: 20px;
+}
+
+.prog-title {
+  all: unset;
+  font-family: Iosevka;
+  font-size: 48px;
+  color: #ffffff;
+}
+
+.genwin {
+	background-color: #2E3440;
+	border-radius: 16px;
+}
+
+/** Weather ***************************************/
+.weather_win{
+	background-color: unset;	
+}
+
+.iconweather {
+	font-family: Iosevka;
+	font-size : 120px;
+	font-weight : normal;
+	margin : 15px 0px 0px 30px;
+	margin: 0;
+}
+
+.label_temp {
+	color : #FFB300;
+	font-size : 60px;
+	font-weight : bold;
+	margin : -15px 30px 0px 0px;
+	margin: 0;
+}
+
+.label_stat {
+	color : #FFB300;
+	color: #ffffff;
+	font-size : 28px;
+	font-weight : bold;
+}
+
+/** Player-spoty *******************************/
+.musicart {
+  background-size: 140px;
+  min-height: 140px;
+  min-width: 140px;
+  margin: 10px;
+  border-radius: 5px;
+  // padding: 10px;
+}
+
+.musictitle {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color : #FFB300;
+	color: #ffffff;
+}
+
+.musicartist {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 20px;
+  margin-bottom: 10px;
+  color : #FFB300;
+	color: #ffffff;
+}
+
+
+.musicalbum {
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 20px;
+  margin-bottom: 20px;
+  color : #FFB300;
+	color: #ffffff;
+}
+
+/**
+.volume scale trough {
+	all: unset;
+	background-color: #4e4e4e;
+	border-radius: 50px;
+	min-height: 5px;
+  min-width: 240px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+}
+
+.volume scale trough highlight {
+	all: unset;
+	background-color : #FFB300;
+	color: #000000;
+	border-radius: 10px;
+}
+
+.volume slider {
+  all: unset;
+  color: #ffd5cd;
+}
+**/
+
+
+/** Calendari ***********************/
+
+.cal-name{
+  font-size: 34px;
+  font-weight: bold;
+  color : #FFB300;
+  margin-bottom: 10px;
+}
+
+.cal-day{
+  padding-left: 20px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.cal-tit{
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.events{
+  margin-bottom: 20px;
+  font-size: 20px;
+}

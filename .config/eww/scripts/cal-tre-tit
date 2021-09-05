@@ -1,0 +1,10 @@
+#!/bin/sh
+
+event=$(khal list -a "Treball" today 3d --day-format ""  --format "{title}")
+
+if [ "$event" != "No events" ] 
+then
+      khal list -a "Treball" today 3d --day-format ""  --format "{title}"
+else
+      echo "  "
+fi

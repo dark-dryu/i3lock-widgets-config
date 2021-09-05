@@ -1,0 +1,9 @@
+#!/bin/sh
+
+$HOME/.scripts/i3lock-widgets &&
+
+pkill -u "$USER" -USR2 dunst
+$HOME/.scripts/eww close-all
+pkill cycle-dim
+pkill wait-suspend
+$HOME/.scripts/unlock-bg

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+khal list -a "Personal Calendar" today 3d --day-format ""  --format "{start-date-long}, {start-time}-{end-time}"
+
+#if [ "$event" != "No events" ] 
+#then
+#      khal list -a "Personal Calendar" today 3d --day-format ""  --format "{start-date-long}, {start-time}-{end-time}"
+#fi

@@ -8,27 +8,6 @@ window {
 
 
 
-.prog-bar scale trough highlight {
-  all: unset;
-  background-color: #FFB300;
-  color: #000000;
-  border-radius: 20px;
-}
-.prog-bar scale trough {
-  all: unset;
-  background-color: #4e4e4e;
-  min-height: 40px;
-  min-width: 500px;
-  border-radius: 20px;
-}
-
-.prog-title {
-  all: unset;
-  font-family: Iosevka;
-  font-size: 48px;
-  color: #ffffff;
-}
-
 .genwin {
 	background-color: #2E3440;
 	border-radius: 16px;
@@ -101,29 +80,6 @@ window {
 	color: #ffffff;
 }
 
-/**
-.volume scale trough {
-	all: unset;
-	background-color: #4e4e4e;
-	border-radius: 50px;
-	min-height: 5px;
-  min-width: 240px;
-  margin-bottom: 20px;
-  margin-left: 10px;
-}
-
-.volume scale trough highlight {
-	all: unset;
-	background-color : #FFB300;
-	color: #000000;
-	border-radius: 10px;
-}
-
-.volume slider {
-  all: unset;
-  color: #ffd5cd;
-}
-**/
 
 
 /** Calendari ***********************/

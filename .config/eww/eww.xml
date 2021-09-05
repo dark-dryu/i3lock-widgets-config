@@ -1,24 +1,5 @@
 <eww>
   <definitions>
-    <def name="blur_full">
-      <box orientation="v" space-evenly="true">
-      </box>
-    </def>
-    <def name="prog-bar">
-      <box orientation="h" class="prog-bar" space-evenly="true" halign="center">
-	<scale min="0" max="10" value="{{cur_work}}" onchange=" "/>
-      </box>
-    </def>
-    <def name="prog-title">
-      <box orientation="h" class="prog-title" space-evenly="true" halign="center">
-	Restoring Workspaces ...
-      </box>
-    </def>
-    <def name="spotify-info">
-      <box orientation="h" class="prog-title" space-evenly="true" halign="center">
-	Restoring Workspaces ...
-      </box>
-    </def>
 	<!-- weather -->
 	<def name="weather">
 		<box class="weather_win">
@@ -64,7 +45,6 @@
   </definitions>
 
   <variables>
-    <script-var name="cur_work" interval="10ms">~/.config/eww/scripts/getworkspace</script-var>
     <!--Weather vars-->
     <script-var name="ICON" interval="15m">~/.config/eww/scripts/weather_info --icon</script-var>
     <script-var name="STAT" interval="15m">~/.config/eww/scripts/weather_info --stat</script-var>
@@ -88,24 +68,6 @@
   </variables>
  
   <windows>
-    <window name="blur_full">
-      <geometry x="0px" y="0px" width="100%" height="100%"/>
-      <widget>
-        <blur_full/>
-      </widget>
-    </window>
-    <window name="progress">
-	<geometry x="35%" y="60%" width="30%" height="10%"/>
-	<widget>
-	   <prog-bar/>
-	</widget>
-    </window>
-    <window name="prog-title">
-	<geometry x="35%" y="35%" width="30%" height="10%"/>
-	<widget>
-	   <prog-title/>
-	</widget>
-    </window>
     <!-- weather -->
     <window name="weather" stacking="fg" focusable="false" screen="1">
     	<geometry x="60px" y="20px" width="300" height="100"/>
